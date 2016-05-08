@@ -37,13 +37,13 @@ var questions = mongoose.model('questions');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/users');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users');
 
 app.use(express.static(__dirname + "/client"));
 app.use(bodyParser.json());
 app.use(session({
     store: new MongoStore({
-        url: process.env.MONGOLAB_URI || 'mongodb://localhost/test'
+        url: process.env.MONGODB_URI || 'mongodb://localhost/test'
     }),
     secret: 'mySecretKey',
     resave: true,
